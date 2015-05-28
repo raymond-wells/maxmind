@@ -101,10 +101,11 @@ class MaxmindTest < Test::Unit::TestCase
     end
     
     should "get attributes" do
-      @response.attributes_from_response.should be_a Hash
-      REQUIRED_FIELDS.each do |field|
-        @response.attributes_from_response[field.to_s].should == @response.send(field)
-      end
+      attrs = @response.attributes_from_response
+      attrs.class.should == Hash
+      attrs['ip_city'].should == 'Syracuse'
+      attrs['risk_score'].should == 2.0
+      attrs['maxmind_id'].should == '9VSOSDE2'
     end
     
     should "require a response" do
