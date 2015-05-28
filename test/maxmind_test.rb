@@ -100,6 +100,13 @@ class MaxmindTest < Test::Unit::TestCase
       @response = request.process!
     end
     
+    should "get attributes" do
+      @response.attributes_from_response.should be_a Hash
+      REQUIRED_FIELDS.each do |field|
+        @response.attributes_from_response[field.to_s].should == @response.send(field)
+      end
+    end
+    
     should "require a response" do
       lambda { Maxmind::Response.new }.should raise_error(ArgumentError)
     end

@@ -16,7 +16,10 @@ http://www.maxmind.com/app/ccv_overview
     gem.authors = ["Adam Daniels", "Tinu Cleatus", 't.e.morgan']
     gem.add_dependency 'activesupport', '>= 2.3'
     gem.add_development_dependency('shoulda')
-    gem.add_development_dependency('matchy')
+    gem.add_development_dependency('jnunemaker-matchy')
+    gem.add_development_dependency('rake')
+    gem.add_development_dependency('fakeweb')
+    gem.add_development_dependency('minitest', '~>2.0.2')
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
@@ -47,7 +50,7 @@ end
 
 task :default => :test
 
-require 'rake/rdoctask'
+require 'rdoc/task'
 Rake::RDocTask.new do |rdoc|
   if File.exist?('VERSION.yml')
     config = YAML.load(File.read('VERSION.yml'))
